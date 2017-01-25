@@ -7,7 +7,6 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		CDDC95681E394280008036EA /* Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = CDDC95671E394280008036EA /* Info.plist */; };
 		CDDC956A1E39428A008036EA /* Pastr.h in Headers */ = {isa = PBXBuildFile; fileRef = CDDC95691E39428A008036EA /* Pastr.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		CDDC956D1E3942DE008036EA /* Pastr.swift in Sources */ = {isa = PBXBuildFile; fileRef = CDDC956C1E3942DE008036EA /* Pastr.swift */; };
 /* End PBXBuildFile section */
@@ -136,7 +135,6 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				CDDC95681E394280008036EA /* Info.plist in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -265,6 +263,7 @@
 				DYLIB_INSTALL_NAME_BASE = "@rpath";
 				INFOPLIST_FILE = Source/Info.plist;
 				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
+				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = com.engineerish.Pastr;
 				PRODUCT_NAME = "$(TARGET_NAME)";
@@ -286,6 +285,7 @@
 				DYLIB_INSTALL_NAME_BASE = "@rpath";
 				INFOPLIST_FILE = Source/Info.plist;
 				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
+				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = com.engineerish.Pastr;
 				PRODUCT_NAME = "$(TARGET_NAME)";
@@ -313,6 +313,7 @@
 				CDDC95651E394215008036EA /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
 	};
