@@ -1,0 +1,100 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="11762" systemVersion="16D32" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES" initialViewController="YW2-Vu-L5F">
+    <device id="retina4_7" orientation="portrait">
+        <adaptation id="fullscreen"/>
+    </device>
+    <dependencies>
+        <deployment identifier="iOS"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="11757"/>
+        <capability name="Constraints to layout margins" minToolsVersion="6.0"/>
+        <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
+    </dependencies>
+    <scenes>
+        <!--View Controller-->
+        <scene sceneID="q3k-vP-gTt">
+            <objects>
+                <viewController automaticallyAdjustsScrollViewInsets="NO" id="YW2-Vu-L5F" customClass="ViewController" customModule="iOS_Example" customModuleProvider="target" sceneMemberID="viewController">
+                    <layoutGuides>
+                        <viewControllerLayoutGuide type="top" id="2rR-rV-2bX"/>
+                        <viewControllerLayoutGuide type="bottom" id="vzK-g8-C16"/>
+                    </layoutGuides>
+                    <view key="view" contentMode="scaleToFill" id="1dy-b2-eC1">
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" text="This is totally going on pastebin!" textAlignment="natural" translatesAutoresizingMaskIntoConstraints="NO" id="uel-TZ-BN2">
+                                <rect key="frame" x="16" y="28" width="343" height="143"/>
+                                <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="143" id="56F-hk-9MQ"/>
+                                </constraints>
+                                <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                <textInputTraits key="textInputTraits" autocapitalizationType="sentences"/>
+                            </textView>
+                            <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" horizontalHuggingPriority="249" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="CBV-OG-wvE">
+                                <rect key="frame" x="97" y="179" width="173" height="30"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                <textInputTraits key="textInputTraits"/>
+                            </textField>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="khC-4M-EpR">
+                                <rect key="frame" x="16" y="178" width="73" height="30"/>
+                                <state key="normal" title="Post paste"/>
+                                <connections>
+                                    <action selector="postPasteButtonTapped:" destination="YW2-Vu-L5F" eventType="touchUpInside" id="UbO-OF-snD"/>
+                                </connections>
+                            </button>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="SSO-dx-drt">
+                                <rect key="frame" x="278" y="178" width="81" height="30"/>
+                                <state key="normal" title="Fetch paste"/>
+                                <connections>
+                                    <action selector="fetchPasteButtonTapped:" destination="YW2-Vu-L5F" eventType="touchUpInside" id="OAA-l8-Srx"/>
+                                </connections>
+                            </button>
+                            <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" textAlignment="natural" translatesAutoresizingMaskIntoConstraints="NO" id="51A-ve-q34">
+                                <rect key="frame" x="16" y="228" width="343" height="143"/>
+                                <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="143" id="P83-pM-CXG"/>
+                                    <constraint firstAttribute="height" relation="greaterThanOrEqual" constant="143" id="mg0-Ss-cfI"/>
+                                </constraints>
+                                <string key="text">Lorem ipsum dolor sit er elit lamet, consectetaur cillium adipisicing pecu, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum. Nam liber te conscient to factor tum poen legum odioque civiuda.</string>
+                                <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                <textInputTraits key="textInputTraits" autocapitalizationType="sentences"/>
+                                <variation key="default">
+                                    <mask key="constraints">
+                                        <exclude reference="mg0-Ss-cfI"/>
+                                    </mask>
+                                </variation>
+                            </textView>
+                        </subviews>
+                        <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                        <constraints>
+                            <constraint firstItem="SSO-dx-drt" firstAttribute="leading" secondItem="CBV-OG-wvE" secondAttribute="trailing" constant="8" id="2cd-Ot-vPa"/>
+                            <constraint firstItem="51A-ve-q34" firstAttribute="top" secondItem="CBV-OG-wvE" secondAttribute="bottom" constant="19" id="55u-el-A77"/>
+                            <constraint firstItem="uel-TZ-BN2" firstAttribute="top" secondItem="2rR-rV-2bX" secondAttribute="bottom" constant="8" id="IvW-YG-24K"/>
+                            <constraint firstItem="CBV-OG-wvE" firstAttribute="leading" secondItem="khC-4M-EpR" secondAttribute="trailing" constant="8" id="Mgq-xr-dcD"/>
+                            <constraint firstAttribute="leadingMargin" secondItem="51A-ve-q34" secondAttribute="leading" id="Xb4-8v-qkx"/>
+                            <constraint firstAttribute="trailingMargin" secondItem="SSO-dx-drt" secondAttribute="trailing" id="Zgg-kH-MpU"/>
+                            <constraint firstAttribute="leadingMargin" secondItem="khC-4M-EpR" secondAttribute="leading" id="ZqP-Vx-O3c"/>
+                            <constraint firstItem="SSO-dx-drt" firstAttribute="top" secondItem="uel-TZ-BN2" secondAttribute="bottom" constant="7" id="a1X-bo-QoL"/>
+                            <constraint firstItem="CBV-OG-wvE" firstAttribute="top" secondItem="uel-TZ-BN2" secondAttribute="bottom" constant="8" id="ccb-uw-7fU"/>
+                            <constraint firstAttribute="trailingMargin" secondItem="uel-TZ-BN2" secondAttribute="trailing" id="edS-g0-Mll"/>
+                            <constraint firstAttribute="trailingMargin" secondItem="51A-ve-q34" secondAttribute="trailing" id="lSG-j5-BmO"/>
+                            <constraint firstAttribute="leadingMargin" secondItem="uel-TZ-BN2" secondAttribute="leading" id="vKD-sX-Uhm"/>
+                            <constraint firstItem="khC-4M-EpR" firstAttribute="top" secondItem="uel-TZ-BN2" secondAttribute="bottom" constant="7" id="y1X-Jy-Qj5"/>
+                        </constraints>
+                    </view>
+                    <connections>
+                        <outlet property="fetchButton" destination="SSO-dx-drt" id="bdo-o8-NsA"/>
+                        <outlet property="pasteKeyTextField" destination="CBV-OG-wvE" id="byu-qQ-kjR"/>
+                        <outlet property="postButton" destination="khC-4M-EpR" id="mW5-Ne-l3Z"/>
+                        <outlet property="resultTextView" destination="51A-ve-q34" id="imF-ND-0JH"/>
+                        <outlet property="textView" destination="uel-TZ-BN2" id="7j7-cN-oJw"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="H7M-ds-Gem" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="92" y="181"/>
+        </scene>
+    </scenes>
+</document>
