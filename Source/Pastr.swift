@@ -25,55 +25,57 @@ public enum PasteExpiry: String {
     case oneMonth   = "1M"
 }
 
-public enum PasterResult {
+public enum PastrResult {
     case success(String)
-    case failure(PasterError)
+    case failure(PastrError)
 }
 
-/// Your API key for Pastebin.com.
-/// For more information, see [http://pastebin.com/api](http://pastebin.com/api)
-public var pasteBinApiKey = ""
-
-/// For certain functionality, you need to login and retrieve a "user key"
-/// For more information, see [http://pastebin.com/api#8](http://pastebin.com/api#8)
-public var pasteBinUserKey: String?
-
-public struct PasteRequest {
-    public var content: String
-    public var name: String?
-    public var scope: PasteScope
-    public var pasteFormat: String?
-    public var expire: PasteExpiry
+public struct Pastr {
+    /// Your API key for Pastebin.com.
+    /// For more information, see [http://pastebin.com/api](http://pastebin.com/api)
+    static public var pastebinApiKey = ""
     
-    /// Create a `PasteRequest`
-    /// - parameter text: The content of the `Paste`
-    /// - parameter name: Name of the `Paste` (Default is nil)
-    /// - parameter scope: Scope of the `Paste` (Default is `unlisted`)
-    /// - parameter pasteFormat: The format of the pasted content. (Default is nil. Read more: [http://pastebin.com/api#4](http://pastebin.com/api#4))
-    /// - parameter expire: A TTL for the paste. (Default is `never`)
-    public init(content: String, name: String? = nil, scope: PasteScope = .asUnlisted, pasteFormat: String? = nil, expire: PasteExpiry = .never) {
-        self.content = content
-        self.name = name
-        self.scope = scope
-        self.pasteFormat = pasteFormat
-        self.expire = expire
+    /// For certain functionality, you need to login and retrieve a "user key"
+    /// For more information, see [http://pastebin.com/api#8](http://pastebin.com/api#8)
+    static public var pastebinUserKey: String?
+    
+    public struct Paste {
+        public var content: String
+        public var name: String?
+        public var scope: PasteScope
+        public var pasteFormat: String?
+        public var expire: PasteExpiry
+        
+        /// Create a `Paste`
+        /// - parameter text: The content of the `Paste`
+        /// - parameter name: Name of the `Paste` (Default is nil)
+        /// - parameter scope: Scope of the `Paste` (Default is `unlisted`)
+        /// - parameter pasteFormat: The format of the pasted content. (Default is nil. Read more: [http://pastebin.com/api#4](http://pastebin.com/api#4))
+        /// - parameter expire: A TTL for the paste. (Default is `never`)
+        public init(content: String, name: String? = nil, scope: PasteScope = .asUnlisted, pasteFormat: String? = nil, expire: PasteExpiry = .never) {
+            self.content = content
+            self.name = name
+            self.scope = scope
+            self.pasteFormat = pasteFormat
+            self.expire = expire
+        }
     }
     
-    public func post(completion: @escaping (PasterResult) -> ()) {
-        guard !pasteBinApiKey.isEmpty else { completion(.failure(.missingApiKey)); return }
-        guard !(scope == .asPrivate && pasteBinUserKey == nil) else { completion(.failure(.userKeyNotSet)); return }
+    /// Submit a Paste to Pastebin.com
+    /// - parameter paste: The `Paste` to submit
+    /// - parameter completion: A closure passing a `PastrResult` enum containing either the paste key or an error
+    static public func post(paste: Paste, completion: @escaping (PastrResult) -> ()) {
+        guard !(paste.scope == .asPrivate && pastebinUserKey == nil) else { completion(.failure(.userKeyNotSet)); return }
         
         // Required parameters
-        var params = ["api_dev_key" : pasteBinApiKey,
-                      "api_option" : "paste",
-                      "api_paste_code" : content,
-                      "api_paste_private" : "\(scope.rawValue)",
-            "api_paste_expire_date" : expire.rawValue]
+        var params = ["api_option" : "paste",
+                      "api_paste_code" : paste.content,
+                      "api_paste_private" : "\(paste.scope.rawValue)",
+            "api_paste_expire_date" : paste.expire.rawValue]
         
         // Optional parameters
-        pasteBinUserKey.map { params["api_user_key"] = $0 }
-        name.map { params["api_paste_name"] = $0 }
-        pasteFormat.map { params["api_paste_format"] = $0 }
+        paste.name.map { params["api_paste_name"] = $0 }
+        paste.pasteFormat.map { params["api_paste_format"] = $0 }
         
         URL(string: "http://pastebin.com/api/api_post.php")!.execute(postParameters: params) { result in
             switch result {
@@ -84,28 +86,46 @@ public struct PasteRequest {
             }
         }
     }
-}
-
-/// Retrieve a `Paste` from Pastebin.com with a given key
-/// - parameter pasteKey: A unique string identifying the `Paste`
-/// - parameter completion: A closure that is called with the resulting string
-public func getPaste(for pasteKey: String, completion: @escaping (PasterResult) -> ()) {
-    guard !pasteBinApiKey.isEmpty else { completion(.failure(.missingApiKey)); return }
-    guard !pasteKey.isEmpty else { completion(.failure(.pasteNotFound)); return }
     
-    URL(string: "http://pastebin.com/raw/\(pasteKey)")!.execute { completion($0) }
+    /// Retrieve a `Paste` from Pastebin.com with a given key
+    /// - parameter pasteKey: A unique string identifying the `Paste`
+    /// - parameter isPrivate: If set to true, we'll try to fetch a private paste from the user
+    /// - parameter completion: A closure passing a `PastrResult` enum containing either the paste content or an error
+    static public func get(paste key: String, isPrivate: Bool = false, completion: @escaping (PastrResult) -> ()) {
+        guard !pastebinApiKey.isEmpty else { completion(.failure(.missingApiKey)); return }
+        guard !key.isEmpty else { completion(.failure(.pasteNotFound)); return }
+        
+        // If a user key is set, we'll use the API to retrieve the paste
+        if isPrivate {
+            guard pastebinUserKey != nil else { completion(.failure(.userKeyNotSet)); return }
+            // Required parameters
+            let params = ["api_option" : "show_paste",
+                          "api_paste_key" : key]
+            URL(string: "http://pastebin.com/api/api_raw.php")!.execute(postParameters: params) { completion($0) }
+        } else {
+            URL(string: "http://pastebin.com/raw/\(key)")?.execute { completion($0) }
+        }
+    }
 }
 
 private extension URL {
-    func execute(postParameters: [String : String], _ completion: @escaping (PasterResult) -> ()) {
-        guard let data = postParameters.map({ $0.key + "=" + $0.value }).joined(separator: "&").data(using: .utf8) else {
+    func execute(postParameters: [String : String], _ completion: @escaping (PastrResult) -> ()) {
+        guard !Pastr.pastebinApiKey.isEmpty else { completion(.failure(.missingApiKey)); return }
+        
+        var params = postParameters
+        
+        params["api_dev_key"] = Pastr.pastebinApiKey
+        Pastr.pastebinUserKey.map { params["api_user_key"] = $0 }
+        
+        guard let data = params.map({ $0.key + "=" + $0.value }).joined(separator: "&").data(using: .utf8) else {
             completion(.failure(.unknown))
             return
         }
+        
         execute(data, completion)
     }
     
-    func execute(_ data: Data? = nil, _ completion: @escaping (PasterResult) -> ()) {
+    func execute(_ data: Data? = nil, _ completion: @escaping (PastrResult) -> ()) {
         var urlRequest = URLRequest(url: self, cachePolicy: .reloadIgnoringLocalAndRemoteCacheData, timeoutInterval: 15)
         urlRequest.httpBody = data
         urlRequest.httpMethod = data.map { _ in "POST" } ?? "GET"
@@ -119,15 +139,15 @@ private extension URL {
                 guard let data = data, let responseString = String(data: data, encoding: .utf8) else { completion(.failure(.unknown)); return }
                 
                 // Check for errors returned as raw text
-                if let error = PasterError(pasteBinResponse: responseString) { completion(.failure(error)); return }
+                if let error = PastrError(pastebinResponse: responseString) { completion(.failure(error)); return }
                 
                 completion(.success(responseString))
             }
-            }.resume()
+        }.resume()
     }
 }
 
-public enum PasterError: Error, LocalizedError {
+public enum PastrError: Error, LocalizedError {
     case badRequest(message: String)
     case blockedBySpamFilter
     case limitReached(message: String)
@@ -153,10 +173,10 @@ public enum PasterError: Error, LocalizedError {
     }
 }
 
-private extension PasterError {
+private extension PastrError {
     // Since Pastebin.com responds with these error with http code 200 and, we have to try to serialize them like this.
     // This ofcourse mean that if you were to create a paste with content matching these rules, the get-function would return an error.
-    init?(pasteBinResponse message: String) {
+    init?(pastebinResponse message: String) {
         if message.hasPrefix("Bad API request") {
             self = .badRequest(message: message)
             return

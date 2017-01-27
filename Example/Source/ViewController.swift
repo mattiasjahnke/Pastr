@@ -30,14 +30,15 @@ class ViewController: UIViewController {
         
         // ******************* TODO: ADD YOUR API KEY HERE *******************
         
-        pasteBinApiKey = "<Your API key>"
+        Pastr.pastebinApiKey = ""
+        Pastr.pastebinUserKey = ""
         
         resultTextView.text = ""
     }
     
     @IBAction func postPasteButtonTapped(_ sender: UIButton) {
         buttonsEnabled = false
-        PasteRequest(content: textView.text).post { result in
+        Pastr.post(paste: Pastr.Paste(content: textView.text, scope: .asPrivate)) { result in
             defer { self.buttonsEnabled = true }
             switch result {
             case .failure(let error): self.displayErrorAlert(error)
@@ -47,7 +48,7 @@ class ViewController: UIViewController {
     }
     
     @IBAction func fetchPasteButtonTapped(_ sender: UIButton) {
-        getPaste(for: pasteKeyTextField.text!) { result in
+        Pastr.get(paste: pasteKeyTextField.text!, isPrivate: true) { result in
             defer { self.buttonsEnabled = true }
             switch result {
             case .failure(let error): self.displayErrorAlert(error)
