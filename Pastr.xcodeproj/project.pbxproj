@@ -7,11 +7,13 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		CD26B97D1E3B792E0018FA6C /* PastebinFormats.swift in Sources */ = {isa = PBXBuildFile; fileRef = CD26B97C1E3B792E0018FA6C /* PastebinFormats.swift */; };
 		CDDC956A1E39428A008036EA /* Pastr.h in Headers */ = {isa = PBXBuildFile; fileRef = CDDC95691E39428A008036EA /* Pastr.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		CDDC956D1E3942DE008036EA /* Pastr.swift in Sources */ = {isa = PBXBuildFile; fileRef = CDDC956C1E3942DE008036EA /* Pastr.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		CD26B97C1E3B792E0018FA6C /* PastebinFormats.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = PastebinFormats.swift; path = Source/PastebinFormats.swift; sourceTree = SOURCE_ROOT; };
 		CDDC955B1E394215008036EA /* Pastr.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pastr.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		CDDC95671E394280008036EA /* Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; name = Info.plist; path = Source/Info.plist; sourceTree = SOURCE_ROOT; };
 		CDDC95691E39428A008036EA /* Pastr.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = Pastr.h; path = Source/Pastr.h; sourceTree = SOURCE_ROOT; };
@@ -49,6 +51,7 @@
 			isa = PBXGroup;
 			children = (
 				CDDC956C1E3942DE008036EA /* Pastr.swift */,
+				CD26B97C1E3B792E0018FA6C /* PastebinFormats.swift */,
 				CDDC956B1E3942B7008036EA /* Supporting Files */,
 			);
 			name = Source;
@@ -146,6 +149,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				CDDC956D1E3942DE008036EA /* Pastr.swift in Sources */,
+				CD26B97D1E3B792E0018FA6C /* PastebinFormats.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
