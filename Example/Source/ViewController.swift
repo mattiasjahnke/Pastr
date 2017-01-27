@@ -19,6 +19,8 @@ class ViewController: UIViewController {
     @IBOutlet weak var fetchButton: UIButton!
     @IBOutlet weak var postButton: UIButton!
     @IBOutlet weak var scopeSegment: UISegmentedControl!
+    @IBOutlet weak var usernameTextField: UITextField!
+    @IBOutlet weak var passwordTextField: UITextField!
     
     fileprivate var buttonsEnabled: Bool {
         set {
@@ -68,6 +70,51 @@ class ViewController: UIViewController {
             }
         }
     }
+    
+    @IBAction func loginButtonTapped(_ sender: Any) {
+        updateConfiguration()
+        
+        Pastr.login(username: usernameTextField.text!, password: passwordTextField.text!) { result in
+            switch result {
+            case .failure(let error): self.displayErrorAlert(error)
+            case .success(let key): self.userKeyTextField.text = key
+            }
+        }
+    }
+    
+    @IBAction func getUserInfoTapped(_ sender: Any) {
+        updateConfiguration()
+        
+        Pastr.getUserInfo { result in
+            switch result {
+            case .failure(let error): self.displayErrorAlert(error)
+            case .success(let info): self.resultTextView.text = info
+            }
+        }
+    }
+    
+    @IBAction func getTrendingTapped(_ sender: Any) {
+        updateConfiguration()
+        
+        Pastr.getTrendingPastes { result in
+            switch result {
+            case .failure(let error): self.displayErrorAlert(error)
+            case .success(let info): self.resultTextView.text = info
+            }
+        }
+    }
+    
+    @IBAction func getPasteListTapped(_ sender: Any) {
+        updateConfiguration()
+        
+        Pastr.getUserPastes(with: 4) { result in
+            switch result {
+            case .failure(let error): self.displayErrorAlert(error)
+            case .success(let info): self.resultTextView.text = info
+            }
+        }
+    }
+    
     
     fileprivate func displayErrorAlert(_ error: Error) {
         let controller = UIAlertController(title: "Error", message: error.localizedDescription, preferredStyle: .alert)

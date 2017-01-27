@@ -85,42 +85,98 @@
                                     <segment title="Private"/>
                                 </segments>
                             </segmentedControl>
+                            <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Username" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="2Eb-Vz-gvI">
+                                <rect key="frame" x="16" y="123" width="343" height="30"/>
+                                <nil key="textColor"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                <textInputTraits key="textInputTraits"/>
+                            </textField>
+                            <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" horizontalHuggingPriority="249" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Password" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="1OE-7i-5ap">
+                                <rect key="frame" x="16" y="161" width="297" height="30"/>
+                                <nil key="textColor"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                <textInputTraits key="textInputTraits" secureTextEntry="YES"/>
+                            </textField>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="ZhH-L0-Sow">
+                                <rect key="frame" x="321" y="160" width="38" height="30"/>
+                                <state key="normal" title="Login"/>
+                                <connections>
+                                    <action selector="loginButtonTapped:" destination="YW2-Vu-L5F" eventType="touchUpInside" id="pex-Sx-7TI"/>
+                                </connections>
+                            </button>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="h4l-ah-fpG">
+                                <rect key="frame" x="16" y="470" width="88" height="30"/>
+                                <state key="normal" title="Get user info"/>
+                                <connections>
+                                    <action selector="getUserInfoTapped:" destination="YW2-Vu-L5F" eventType="touchUpInside" id="CeR-Cr-rda"/>
+                                </connections>
+                            </button>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Xhi-Kr-YkG">
+                                <rect key="frame" x="112" y="470" width="86" height="30"/>
+                                <state key="normal" title="Get trending"/>
+                                <connections>
+                                    <action selector="getTrendingTapped:" destination="YW2-Vu-L5F" eventType="touchUpInside" id="qRA-SZ-rUT"/>
+                                </connections>
+                            </button>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="D3X-kK-ZtW">
+                                <rect key="frame" x="206" y="470" width="91" height="30"/>
+                                <state key="normal" title="Get paste list"/>
+                                <connections>
+                                    <action selector="getPasteListTapped:" destination="YW2-Vu-L5F" eventType="touchUpInside" id="T5e-ID-H6X"/>
+                                </connections>
+                            </button>
                         </subviews>
                         <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                         <constraints>
+                            <constraint firstItem="ZhH-L0-Sow" firstAttribute="trailing" secondItem="1dy-b2-eC1" secondAttribute="trailingMargin" id="1qu-6J-ph6"/>
                             <constraint firstItem="SSO-dx-drt" firstAttribute="leading" secondItem="CBV-OG-wvE" secondAttribute="trailing" constant="8" id="2cd-Ot-vPa"/>
                             <constraint firstItem="Aeq-rF-kQe" firstAttribute="leading" secondItem="1dy-b2-eC1" secondAttribute="leadingMargin" id="3wU-Mc-aRf"/>
                             <constraint firstItem="51A-ve-q34" firstAttribute="top" secondItem="CBV-OG-wvE" secondAttribute="bottom" constant="19" id="55u-el-A77"/>
+                            <constraint firstItem="ZhH-L0-Sow" firstAttribute="top" secondItem="2Eb-Vz-gvI" secondAttribute="bottom" constant="7" id="6kT-f5-Llz"/>
+                            <constraint firstItem="2Eb-Vz-gvI" firstAttribute="trailing" secondItem="1dy-b2-eC1" secondAttribute="trailingMargin" id="9ZI-1k-WnS"/>
                             <constraint firstItem="PeA-H5-Fpl" firstAttribute="trailing" secondItem="1dy-b2-eC1" secondAttribute="trailingMargin" id="BCQ-vU-B5q"/>
+                            <constraint firstItem="1OE-7i-5ap" firstAttribute="leading" secondItem="1dy-b2-eC1" secondAttribute="leadingMargin" id="FhZ-jI-7c3"/>
+                            <constraint firstItem="2Eb-Vz-gvI" firstAttribute="leading" secondItem="1dy-b2-eC1" secondAttribute="leadingMargin" id="GQr-GR-Yk1"/>
+                            <constraint firstItem="Xhi-Kr-YkG" firstAttribute="leading" secondItem="h4l-ah-fpG" secondAttribute="trailing" constant="8" id="IKF-3X-gMO"/>
                             <constraint firstItem="PeA-H5-Fpl" firstAttribute="leading" secondItem="1dy-b2-eC1" secondAttribute="leadingMargin" id="ILr-Rs-GUW"/>
                             <constraint firstItem="CBV-OG-wvE" firstAttribute="leading" secondItem="khC-4M-EpR" secondAttribute="trailing" constant="8" id="Mgq-xr-dcD"/>
+                            <constraint firstItem="h4l-ah-fpG" firstAttribute="top" secondItem="51A-ve-q34" secondAttribute="bottom" constant="8" id="O5j-nM-6P9"/>
                             <constraint firstItem="bvf-Q6-OdJ" firstAttribute="top" secondItem="PeA-H5-Fpl" secondAttribute="bottom" constant="8" id="QUo-5G-u08"/>
+                            <constraint firstItem="ZhH-L0-Sow" firstAttribute="leading" secondItem="1OE-7i-5ap" secondAttribute="trailing" constant="8" id="Ubb-xF-YKt"/>
                             <constraint firstItem="PeA-H5-Fpl" firstAttribute="top" secondItem="2rR-rV-2bX" secondAttribute="bottom" id="UjW-Bq-zoh"/>
+                            <constraint firstItem="D3X-kK-ZtW" firstAttribute="top" secondItem="51A-ve-q34" secondAttribute="bottom" constant="8" id="V7a-n2-ldr"/>
+                            <constraint firstItem="Aeq-rF-kQe" firstAttribute="top" secondItem="1OE-7i-5ap" secondAttribute="bottom" constant="28" id="V9o-9J-fc7"/>
                             <constraint firstAttribute="leadingMargin" secondItem="51A-ve-q34" secondAttribute="leading" id="Xb4-8v-qkx"/>
+                            <constraint firstItem="1OE-7i-5ap" firstAttribute="top" secondItem="2Eb-Vz-gvI" secondAttribute="bottom" constant="8" id="Y4L-cI-VOi"/>
+                            <constraint firstItem="D3X-kK-ZtW" firstAttribute="leading" secondItem="Xhi-Kr-YkG" secondAttribute="trailing" constant="8" id="Yxu-lv-8c1"/>
                             <constraint firstAttribute="trailingMargin" secondItem="SSO-dx-drt" secondAttribute="trailing" id="Zgg-kH-MpU"/>
                             <constraint firstAttribute="leadingMargin" secondItem="khC-4M-EpR" secondAttribute="leading" id="ZqP-Vx-O3c"/>
                             <constraint firstItem="SSO-dx-drt" firstAttribute="top" secondItem="uel-TZ-BN2" secondAttribute="bottom" constant="7" id="a1X-bo-QoL"/>
-                            <constraint firstItem="Aeq-rF-kQe" firstAttribute="top" secondItem="bvf-Q6-OdJ" secondAttribute="bottom" constant="131" id="alp-H0-46k"/>
+                            <constraint firstItem="h4l-ah-fpG" firstAttribute="leading" secondItem="1dy-b2-eC1" secondAttribute="leadingMargin" id="az8-5n-HC8"/>
                             <constraint firstItem="CBV-OG-wvE" firstAttribute="top" secondItem="uel-TZ-BN2" secondAttribute="bottom" constant="8" id="ccb-uw-7fU"/>
                             <constraint firstAttribute="trailingMargin" secondItem="uel-TZ-BN2" secondAttribute="trailing" id="edS-g0-Mll"/>
                             <constraint firstItem="bvf-Q6-OdJ" firstAttribute="trailing" secondItem="1dy-b2-eC1" secondAttribute="trailingMargin" id="etR-Cs-WG8"/>
+                            <constraint firstItem="Xhi-Kr-YkG" firstAttribute="top" secondItem="51A-ve-q34" secondAttribute="bottom" constant="8" id="ilf-an-kWD"/>
                             <constraint firstItem="Aeq-rF-kQe" firstAttribute="trailing" secondItem="1dy-b2-eC1" secondAttribute="trailingMargin" id="kp8-KE-lFA"/>
                             <constraint firstAttribute="trailingMargin" secondItem="51A-ve-q34" secondAttribute="trailing" id="lSG-j5-BmO"/>
                             <constraint firstItem="bvf-Q6-OdJ" firstAttribute="leading" secondItem="1dy-b2-eC1" secondAttribute="leadingMargin" id="ofA-0x-5l2"/>
                             <constraint firstItem="uel-TZ-BN2" firstAttribute="top" secondItem="Aeq-rF-kQe" secondAttribute="bottom" constant="8" id="ryg-nR-MkF"/>
                             <constraint firstAttribute="leadingMargin" secondItem="uel-TZ-BN2" secondAttribute="leading" id="vKD-sX-Uhm"/>
+                            <constraint firstItem="2Eb-Vz-gvI" firstAttribute="top" secondItem="bvf-Q6-OdJ" secondAttribute="bottom" constant="35" id="xuc-E0-gFb"/>
                             <constraint firstItem="khC-4M-EpR" firstAttribute="top" secondItem="uel-TZ-BN2" secondAttribute="bottom" constant="7" id="y1X-Jy-Qj5"/>
                         </constraints>
                     </view>
                     <connections>
                         <outlet property="apiKeyTextField" destination="PeA-H5-Fpl" id="7fe-0A-7l8"/>
                         <outlet property="fetchButton" destination="SSO-dx-drt" id="bdo-o8-NsA"/>
+                        <outlet property="passwordTextField" destination="1OE-7i-5ap" id="xE0-4G-IFS"/>
                         <outlet property="pasteKeyTextField" destination="CBV-OG-wvE" id="byu-qQ-kjR"/>
                         <outlet property="postButton" destination="khC-4M-EpR" id="mW5-Ne-l3Z"/>
                         <outlet property="resultTextView" destination="51A-ve-q34" id="imF-ND-0JH"/>
                         <outlet property="scopeSegment" destination="Aeq-rF-kQe" id="cDH-iR-Vw0"/>
                         <outlet property="textView" destination="uel-TZ-BN2" id="7j7-cN-oJw"/>
                         <outlet property="userKeyTextField" destination="bvf-Q6-OdJ" id="klE-7M-Vtq"/>
+                        <outlet property="usernameTextField" destination="2Eb-Vz-gvI" id="As9-hC-8je"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="H7M-ds-Gem" sceneMemberID="firstResponder"/>
