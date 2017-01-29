@@ -1,6 +1,6 @@
 # Pastr
 
-Post/get pastes from pastebin.com
+A library wrapping the Pastebin.com API.
 
 ## Requirements
 Xcode 8 or greater
@@ -35,33 +35,82 @@ pasteBinApiKey = "<Your API key>"
 ### Create a Paste
 
 ```swift
-PasteRequest(content: "Hey I'm posting this to Pastebin!").post { result in
+Pastr.post(text: "Hey I'm posting this to Pastebin!") { result in
 	switch result {
-	case .failure(let error): fatalError("Oh! Todo: handle this")
+	case .failure(let error): fatalError() // Handle
 	case .success(let key): print("Posted paste with key \(key)")
 	}
 }
 ```
 
+This function accepts the following parameters:
+
+* `name` - To give the paste a name
+* `scope` - Private, public or unlisted (enum `PastrScope`)
+* `format` - Pastebin supports syntax highlighting. A list of supported types are available in `Pastr.Format`
+* `expiration` - Sets when the post should expire (default is never) (enum `PastrExpiration`).
+
 ### Retrieve a Paste
 
 ```swift
-let key = …
-getPaste(for: key) { result in
+Pastr.get(paste: "<a paste key>") { result in
 	switch result {
-	case .failure(let error): fatalError() // Todo: Perhaps one should handle this...
+	case .failure(let error): fatalError() // Handle
 	case .success(let content): print("Retrieved: \(content)")
-	}
+  }
 }
 ```
 
-## More features
+### Login to pastebin
 
-The module also supports:
-* Name of a paste
-* Scope (if you give it the scope "private", you'll have to configure your pastebin user api key)
-* Format
-* Expiration (default is `never`)
+This function will authenticate a user with pastebin and return a "user key" to be used
+for functions that require this token.
+
+```swift
+Pastr.delete(paste: "<a paste key>") { result in
+	…
+}
+```
+
+### Delete paste (User key required)
+
+```swift
+Pastr.delete(paste: "<a paste key>") { result in
+	…
+}
+```
+
+### Retrieve users pastes (User key required)
+
+```swift
+Pastr.getUserPastes { result in
+	…
+}
+```
+
+Will return a raw string containing XML.
+
+### Retrieve trending pastes
+
+Retrieves the 18 currently trending pastes.
+
+```swift
+Pastr.getTrendingPastes { result in
+	…
+}
+```
+
+Will return a raw string containing XML.
+
+### Retrieve user information
+
+```swift
+Pastr.getUserInfo { result in
+	…
+}
+```
+
+Will return a raw string containing XML.
 
 ## Contribute
 

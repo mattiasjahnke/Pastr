@@ -62,7 +62,7 @@ class ViewController: UIViewController {
     @IBAction func fetchPasteButtonTapped(_ sender: UIButton) {
         updateConfiguration()
         
-        Pastr.get(paste: pasteKeyTextField.text!, isPrivate: true) { result in
+        Pastr.get(paste: pasteKeyTextField.text!) { result in
             defer { self.buttonsEnabled = true }
             switch result {
             case .failure(let error): self.displayErrorAlert(error)
@@ -107,7 +107,7 @@ class ViewController: UIViewController {
     @IBAction func getPasteListTapped(_ sender: Any) {
         updateConfiguration()
         
-        Pastr.getUserPastes(with: 4) { result in
+        Pastr.getUserPastes(limit: 4) { result in
             switch result {
             case .failure(let error): self.displayErrorAlert(error)
             case .success(let info): self.resultTextView.text = info

@@ -107,7 +107,7 @@ public extension Pastr {
     /// - parameter completion: A closure passing a `PastrResult` enum containing either the list of pastes in raw xml or an error
     /// - note: Usage of this API requires a user key
     /// TODO: This will just return unparsed XML in a string for now
-    static public func getUserPastes(with limit: Int? = nil, completion: @escaping (PastrResult) -> ()) {
+    static public func getUserPastes(limit: Int? = nil, completion: @escaping (PastrResult) -> ()) {
         var params = ["api_option" : "list"]
         limit.map { params["api_results_limit"] = "\($0)" }
         URL(.post).execute(params) { completion($0) }
