@@ -1,6 +1,6 @@
 Pod::Spec.new do |s|
   s.name = 'Pastr'
-  s.version = '0.1.0'
+  s.version = '0.2.0'
   s.license = 'MIT'
   s.summary = 'Module wrapping the Pastebin API'
   s.homepage = 'https://github.com/mattiasjahnke/Pastr'
