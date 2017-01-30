@@ -108,7 +108,7 @@ Pastr.getTrendingPastes { result in
 
 Will return a raw string containing XML.
 
-### Retrieve user information
+### Retrieve user information (User key required)
 
 ```swift
 Pastr.getUserInfo { result in
