@@ -29,7 +29,13 @@ pod "Pastr"
 Configure Pastr with your Pastebin api key. Read more about it and how you obtain one [here](http://pastebin.com/api)
 
 ```swift
-pasteBinApiKey = "<Your API key>"
+Pastr.pasteBinApiKey = "<API key>"
+```
+
+If you're accessing apis that requires an authenticated user, you have to set the user key:
+
+```swift
+Pastr.pastebinUserKey = "<User key>"
 ```
 
 ### Create a Paste
